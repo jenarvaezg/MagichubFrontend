@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  background-color: #3F51B5;
+}
+
+.box-list-item {
+  background-color: #7986CB;
+}
+
+
+.selected-box {
+  background-color: #303F9F;
+}
+
+.App-intro {
+  margin-top: 10px;
+}
+
+.box-detail, .notes-section {
+  background-color: #7986CB;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+}
+
+button {
+  background-color:  #3F51B5;
+}
+
+.icon-span {
+  margin-top: 100px;
+}
