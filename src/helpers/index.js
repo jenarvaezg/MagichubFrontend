@@ -13,7 +13,7 @@ export function validTokenExists() {
     }
     return !expired
   } catch(error) {
-    window.localstorate.removeItem('token')
+    window.localStorage.removeItem('token')
     return false
   }
 }
