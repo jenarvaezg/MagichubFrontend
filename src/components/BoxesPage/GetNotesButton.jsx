@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { fetchNotes } from '../actions'
+import { fetchNotes } from './actions'
 
 
 class GetNotesButton extends Component {

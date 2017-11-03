@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { insertNote, fetchBoxes } from '../actions';
+import { insertNote, fetchBoxes } from './actions';
 
 class InsertNotesForm extends Component {
 

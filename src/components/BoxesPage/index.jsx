@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import logo from '../box_logo.png';
-import '../style/App.css';
+import logo from '../../box_logo.png';
 
-import BoxList from '../containers/BoxList';
-import BoxDetail from '../containers/BoxDetail';
-import CreateBoxDetail from '../containers/CreateBoxDetail';
+import '../../style/App.css';
+import BoxList from './BoxList';
+import BoxDetail from './BoxDetail';
+import CreateBoxDetail from './CreateBoxDetail';
 
-export default class App extends Component {
+export default class BoxesPage extends Component {
 
   constructor(props){
     super(props);
@@ -16,7 +16,6 @@ export default class App extends Component {
       selectedBox: null
     }
   }
-
 
   render() {
     return (

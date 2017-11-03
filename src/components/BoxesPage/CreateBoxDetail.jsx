@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { createBox, fetchBoxes } from '../actions';
+import { createBox, fetchBoxes } from './actions';
 
 class CreateBoxDetail extends Component {
 

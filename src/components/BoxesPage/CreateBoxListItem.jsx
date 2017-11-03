@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Ionicon from 'react-ionicons'
 
-import { boxSelected } from '../actions';
-import { iconStyle } from '../style';
+import { boxSelected } from './actions';
+import { iconStyle } from '../../style';
 
 class CreateBoxListItem extends Component {
 

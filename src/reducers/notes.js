@@ -1,4 +1,4 @@
-import { FETCH_NOTES, BOX_SELECTED } from '../actions'
+import { FETCH_NOTES, BOX_SELECTED } from '../components/BoxesPage/actions'
 
 export default function(state = null, action) {
   switch(action.type){

@@ -1,14 +1,8 @@
-import { BOX_SELECTED, FETCH_BOXES } from '../actions'
+import { BOX_SELECTED, FETCH_BOXES } from '../components/BoxesPage/actions'
 
 
 function getBoxFromNewList(previousBox, boxList){
-  for (var box of boxList) {
-    if (previousBox.id === box.id) {
-      return box
-    }
-  }
-
-  return null
+  return boxList.find(box => box.id === previousBox.id)
 }
 
 export default function(state = null, action) {
