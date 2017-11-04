@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import TextField from 'material-ui/TextField'
+import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 
 import { logIn } from './actions'
@@ -11,7 +11,7 @@ class LoginForm extends Component {
   renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
     <TextField
       error={!!(touched && error)}
-      label={touched && error ? error : label}
+      label={touched && error ? `${label} - ${error}` : label}
       placeholder={label}
       {...input}
       {...custom}

@@ -31,14 +31,9 @@ export function fetchNotes(box) {
   }
 }
 
-export function boxRegister(box) {
+export function boxRegister(box, data, callback, errorCallback) {
   const url = `${API_URL}/box/${box.id}/register`
-
-  const data = {
-    passphrase: ''
-  }
-
-  const request = axios.post(url, data);
+  const request = axios.post(url, data).then(callback).catch(errorCallback);
 
   return {
     type: BOX_REGISTER,
@@ -46,10 +41,10 @@ export function boxRegister(box) {
   }
 }
 
-export function createBox(data) {
+export function createBox(data, callback) {
   const url = `${API_URL}/box`
 
-  const request = axios.post(url, data);
+  const request = axios.post(url, data).then(callback);
 
   return {
     type: BOX_CREATED,

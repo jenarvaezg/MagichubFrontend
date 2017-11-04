@@ -9,9 +9,9 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 
-import { createAccount } from './actions';
+import { boxRegister } from './actions';
 
-class CreateAccountDialog extends React.Component {
+class BoxRegisterDialog extends React.Component {
   handleRequestClose(){
     this.props.onClose()
   }
@@ -27,12 +27,11 @@ class CreateAccountDialog extends React.Component {
   )
 
   onSubmit(values){
-    this.props.createAccount(values, () => {
-      this.props.onCreatedAccountSuccess();
+    this.props.boxRegister(this.props.box, values, () => {
+      this.props.onRegisterSuccess();
       this.handleRequestClose()
     }, (error) => {
-      console.log(error)
-      this.props.onCreatedAccountError(error);
+      this.props.onRegisterError(error);
     });
   }
 
@@ -42,46 +41,14 @@ class CreateAccountDialog extends React.Component {
     return (
       <div>
         <Dialog open={this.props.open} onRequestClose={this.handleRequestClose.bind(this)}>
-          <DialogTitle>Create an account</DialogTitle>
+          <DialogTitle>Register into box</DialogTitle>
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <DialogContent>
               <Field
                 autoFocus
                 margin="dense"
-                name="username"
-                label="Username"
-                type="text"
-                fullWidth
-                component={this.renderTextField}
-              />
-              <Field
-                margin="dense"
-                name="firstName"
-                label="First name"
-                type="text"
-                fullWidth
-                component={this.renderTextField}
-              />
-              <Field
-                margin="dense"
-                name="lastName"
-                label="Last name"
-                type="text"
-                fullWidth
-                component={this.renderTextField}
-              />
-              <Field
-                margin="dense"
-                name="email"
-                label="Email"
-                type="email"
-                fullWidth
-                component={this.renderTextField}
-              />
-              <Field
-                margin="dense"
-                name="password"
-                label="Pasword"
+                name="passphrase"
+                label="Passphrase"
                 type="password"
                 fullWidth
                 component={this.renderTextField}
@@ -105,7 +72,7 @@ class CreateAccountDialog extends React.Component {
 function validate(values){
   const errors = {}
 
-  const requiredFields = [ 'username', 'password', 'firstName', 'email']
+  const requiredFields = [ 'passphrase' ]
   requiredFields.forEach(field => {
     if (!values[ field ]) {
       errors[ field ] = 'Required'
@@ -115,9 +82,15 @@ function validate(values){
   return errors
 }
 
+function mapStateToProps(state){
+  return {
+    box: state.selectedBox
+  }
+}
+
 export default reduxForm({
   validate,
-  form: 'CreateAccountForm'
+  form: 'RegisterInBoxForm'
 })(
-  connect(null, { createAccount })(CreateAccountDialog)
+  connect(mapStateToProps, { boxRegister })(BoxRegisterDialog)
 );

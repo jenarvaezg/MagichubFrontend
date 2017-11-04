@@ -32,3 +32,13 @@ export function userFromToken() {
     return null
   }
 }
+
+export function getDate(date) {
+  date = new Date(date)
+  const month = String(date.getMonth()).length === 1 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
+  const day = String(date.getDate()).length === 1 ? `0${date.getDate()}` : date.getDate()
+  const hours = String(date.getHours()).length === 1 ? `0${date.getHours()}` : date.getHours()
+  const minutes = String(date.getMinutes()).length === 1 ? `0${date.getMinutes()}` : date.getMinutes()
+  const seconds = String(date.getSeconds()).length === 1 ? `0${date.getSeconds()}` : date.getSeconds()
+  return `${date.getFullYear()}-${month}-${day} ${hours}:${minutes}:${seconds}`
+}

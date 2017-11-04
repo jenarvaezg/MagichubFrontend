@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import '../../style/App.css';
 import BoxList from './BoxList';
 import BoxDetail from './BoxDetail';
-import CreateBoxDetail from './CreateBoxDetail';
+import CreateBoxForm from './CreateBoxForm';
 import Header from '../Header';
 
 export default class BoxesPage extends Component {
@@ -27,7 +27,7 @@ export default class BoxesPage extends Component {
           </div>
           <div className="col-xs-8">
             <BoxDetail />
-            <CreateBoxDetail />
+            <CreateBoxForm />
           </div>
         </div>
       </div>

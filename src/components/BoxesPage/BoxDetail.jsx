@@ -1,17 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Snackbar from 'material-ui/Snackbar';
 
+import { getDate } from '../../helpers';
+import { boxRegister, fetchBoxes } from './actions'
+import BoxRegisterDialog from './BoxRegisterDialog'
 import GetNotesButton from './GetNotesButton';
-import BoxRegisterButton from './BoxRegisterButton';
 import InsertNotesForm from './InsertNotesForm';
 
 class BoxDetail extends Component {
 
+  constructor(props){
+    super(props);
+
+    this.state = {
+      showBoxRegisterDialog: false,
+      showSnackbar: false,
+    }
+  }
+
+  handleCloseBoxRegisterDialog() {
+    this.setState({showBoxRegisterDialog: false})
+  }
+
   getBoxRegisterButton(box){
     return (
       <span className="box-detail-register-button">
-        <BoxRegisterButton />
+        <button
+          onClick={this.handleRegisterAttempt.bind(this)}
+          className="box-register-button">Register into box</button>
       </span>
     )
   }
@@ -20,7 +38,7 @@ class BoxDetail extends Component {
     return (
       <div className="box-detail-open-status-open">
         <div className="box-detail-open-status-open-text">
-          This box is open! It opened at { box.openDate }
+          This box is open! It opened at { getDate(box.openDate) }
         </div>
         <div>
           <GetNotesButton className="box-detail-get-notes" />
@@ -41,7 +59,7 @@ class BoxDetail extends Component {
     return (
       <div className="box-detail-open-status-closed">
         <div className="box-detail-open-status-closed-text">
-          This box is closed... It will open at { box.openDate }
+          This box is closed... It will open at { getDate(box.openDate) }
         </div>
         <div>
           <InsertNotesForm />
@@ -58,6 +76,35 @@ class BoxDetail extends Component {
     } else{
       return this.getClosedBoxDiv(box);
     }
+  }
+
+  handleRegisterAttempt() {
+    const { box } = this.props;
+    if ( !box.hasPassphrase ) {
+      this.props.boxRegister(this.props.box, {}, () => this.handleBoxRegisterSuccess());
+    } else {
+      this.setState({showBoxRegisterDialog: true})
+    }
+  }
+
+  handleBoxRegisterSuccess() {
+    this.setState({
+      showBoxRegisterDialog: false,
+      showSnackbar: true,
+      snackbarText: `Registered in box ${this.props.box.name} succesfully`})
+    this.props.fetchBoxes()
+  }
+
+  handleBoxRegisterError(error) {
+    error = error.response.data.error;
+    this.setState({ showSnackbar: true, snackbarText: error});
+  }
+
+  handleRequestClose(event, reason) {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.setState({ showSnackbar: false });
   }
 
   render(){
@@ -83,6 +130,24 @@ class BoxDetail extends Component {
           This box currently has: {box.numberOfNotes} note(s)
         </div>
         { this.getNotesElement(box) }
+        <BoxRegisterDialog
+          open={this.state.showBoxRegisterDialog}
+          onClose={this.handleCloseBoxRegisterDialog.bind(this)}
+          onRegisterSuccess={this.handleBoxRegisterSuccess.bind(this)}
+          onRegisterError={this.handleBoxRegisterError.bind(this)} />
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          open={this.state.showSnackbar}
+          autoHideDuration={3000}
+          onRequestClose={this.handleRequestClose.bind(this)}
+          SnackbarContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">{this.state.snackbarText}</span>}
+        />
       </div>
     )
   }
@@ -90,7 +155,7 @@ class BoxDetail extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({  }, dispatch);
+  return bindActionCreators({ boxRegister, fetchBoxes }, dispatch);
 }
 
 function mapStateToProps(state){
