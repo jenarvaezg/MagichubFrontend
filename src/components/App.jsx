@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import '../style/App.css';
 import BoxesPage from './BoxesPage';
@@ -12,7 +12,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       <Component {...props}/>
     ) : (
       <Redirect to={{
-        pathname: process.env.PUBLIC_URL + '/login',
+        pathname: '/login',
         state: { from: props.location }
       }}/>
     )
@@ -21,14 +21,14 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 export default () => {
     return(
-      <BrowserRouter>
+      <HashRouter>
         <div>
           <Switch>
-            <Route path={process.env.PUBLIC_URL + '/login'} component={Loginpage} />
-            <PrivateRoute path={process.env.PUBLIC_URL + '/'} component={BoxesPage} />
+            <Route path="/login" component={Loginpage} />
+            <PrivateRoute path="/" component={BoxesPage} />
           </Switch>
         </div>
-      </BrowserRouter>
+      </HashRouter>
 
     )
   }

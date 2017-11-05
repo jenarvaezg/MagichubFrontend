@@ -21,7 +21,7 @@ class LoginForm extends Component {
   onSubmit(values){
     this.props.logIn(values, ({ data }) =>{
       window.localStorage.token = data
-      window.location = process.env.PUBLIC_URL + '/'
+      window.location = '/'
     }, (error) => {
       this.props.onLoginFailed()
     })
