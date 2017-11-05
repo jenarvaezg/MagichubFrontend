@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import '../../style/App.css';
 import BoxList from './BoxList';
 import BoxDetail from './BoxDetail';
 import CreateBoxForm from './CreateBoxForm';
 import Header from '../Header';
+import { fetchUsers } from './actions';
 
-export default class BoxesPage extends Component {
+
+class BoxesPage extends Component {
 
   constructor(props){
     super(props);
@@ -15,6 +19,10 @@ export default class BoxesPage extends Component {
       boxes: [],
       selectedBox: null
     }
+  }
+
+  componentDidMount() {
+    this.props.fetchUsers()
   }
 
   render() {
@@ -34,3 +42,9 @@ export default class BoxesPage extends Component {
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchUsers }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(BoxesPage);

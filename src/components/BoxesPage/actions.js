@@ -9,6 +9,17 @@ export const FETCH_NOTES = 'FETCH_NOTES';
 export const BOX_SELECTED = 'BOX_SELECTED';
 export const BOX_REGISTER = 'BOX_REGISTER';
 export const BOX_CREATED = 'BOX_CREATED';
+export const FETCH_USERS = 'FETCH_USERS';
+
+export function fetchUsers() {
+  const url = `${API_URL}/user`;
+  const request = axios.get(url);
+
+  return {
+    type: FETCH_USERS,
+    payload: request
+  };
+}
 
 export function fetchBoxes() {
   const url = `${API_URL}/box`;

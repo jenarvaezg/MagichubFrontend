@@ -19,7 +19,7 @@ class CreateAccountDialog extends React.Component {
   renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
     <TextField
       error={!!(touched && error)}
-      label={touched && error ? error : label}
+      label={touched && error ? `${label} - ${error}` : label}
       placeholder={label}
       {...input}
       {...custom}
@@ -31,7 +31,6 @@ class CreateAccountDialog extends React.Component {
       this.props.onCreatedAccountSuccess();
       this.handleRequestClose()
     }, (error) => {
-      console.log(error)
       this.props.onCreatedAccountError(error);
     });
   }

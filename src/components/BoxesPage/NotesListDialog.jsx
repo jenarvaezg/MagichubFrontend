@@ -14,11 +14,10 @@ class NotesListDialog extends Component {
   };
 
   render() {
-    const { notes, onRequestClose, open, box } = this.props;
+    const { notes, onRequestClose, open, box, users } = this.props;
     if (!notes) {
       return <div></div>
     }
-
     return (
       <Dialog open={open} onRequestClose={() => onRequestClose()}>
         <DialogTitle>{`Notes inside ${box.name}`}</DialogTitle>
@@ -27,7 +26,9 @@ class NotesListDialog extends Component {
             {notes.map((note, key) => (
               <ListItem key={note.title + key}>
                 <ListItemAvatar>
-                  <Tooltip title={note.from || "Anonymous"} placement="top">
+                  <Tooltip
+                    title={!note.from ? "Anonymous":  users[note.from].username || `Unknow user, id: ${note.from}`}
+                    placement="top">
                     <Avatar>
                       <PersonIcon />
                     </Avatar>
@@ -54,6 +55,7 @@ class NotesListDialog extends Component {
 function mapStateToProps(state) {
   return {
     notes: state.notes,
+    users: state.users,
     box: state.selectedBox
   }
 }
