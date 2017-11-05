@@ -4,10 +4,10 @@ import { bindActionCreators } from 'redux';
 import Snackbar from 'material-ui/Snackbar';
 
 import { getDate } from '../../helpers';
-import { boxRegister, fetchBoxes } from './actions'
+import { boxRegister, fetchBoxes, fetchNotes } from './actions'
 import BoxRegisterDialog from './BoxRegisterDialog'
-import GetNotesButton from './GetNotesButton';
 import InsertNotesForm from './InsertNotesForm';
+import NotesListDialog from './NotesListDialog';
 
 class BoxDetail extends Component {
 
@@ -16,6 +16,7 @@ class BoxDetail extends Component {
 
     this.state = {
       showBoxRegisterDialog: false,
+      showNotesListDialog: false,
       showSnackbar: false,
     }
   }
@@ -41,7 +42,11 @@ class BoxDetail extends Component {
           This box is open! It opened at { getDate(box.openDate) }
         </div>
         <div>
-          <GetNotesButton className="box-detail-get-notes" />
+          <button
+            onClick={this.handleOpenBox.bind(this)}
+            className="get-notes-button">
+            Get notes for the current box
+          </button>
         </div>
       </div>
     );
@@ -76,6 +81,14 @@ class BoxDetail extends Component {
     } else{
       return this.getClosedBoxDiv(box);
     }
+  }
+
+  handleOpenBox() {
+    this.props.fetchNotes(this.props.box, () => this.setState({showNotesListDialog: true}));
+  }
+
+  handleCloseNotesListDialog(){
+    this.setState({showNotesListDialog: false})
   }
 
   handleRegisterAttempt() {
@@ -135,6 +148,10 @@ class BoxDetail extends Component {
           onClose={this.handleCloseBoxRegisterDialog.bind(this)}
           onRegisterSuccess={this.handleBoxRegisterSuccess.bind(this)}
           onRegisterError={this.handleBoxRegisterError.bind(this)} />
+        <NotesListDialog
+          open={this.state.showNotesListDialog}
+          onRequestClose={this.handleCloseNotesListDialog.bind(this)}
+          notes={this.props.notes} />
         <Snackbar
           anchorOrigin={{
             vertical: 'bottom',
@@ -155,7 +172,7 @@ class BoxDetail extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ boxRegister, fetchBoxes }, dispatch);
+  return bindActionCreators({ boxRegister, fetchBoxes, fetchNotes }, dispatch);
 }
 
 function mapStateToProps(state){

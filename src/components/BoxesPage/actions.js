@@ -20,10 +20,14 @@ export function fetchBoxes() {
   };
 }
 
-export function fetchNotes(box) {
+export function fetchNotes(box, callback) {
   const url = `${API_URL}/box/${box.id}/notes`
 
   const request = axios.get(url);
+
+  if (callback){
+    request.then(callback)
+  }
 
   return {
     type: FETCH_NOTES,
@@ -52,10 +56,14 @@ export function createBox(data, callback) {
   }
 }
 
-export function insertNote(box, data) {
+export function insertNote(box, data, callback) {
   const url = `${API_URL}/box/${box.id}/notes`
 
   const request = axios.post(url, data);
+
+  if (callback) {
+    request.then(callback)
+  }
 
   return {
     type: BOX_CREATED,
