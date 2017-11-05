@@ -24,8 +24,8 @@ export default () => {
       <BrowserRouter>
         <div>
           <Switch>
-            <Route path="/login" component={Loginpage} />
-            <PrivateRoute path="/" component={BoxesPage} />
+            <Route path={process.env.PUBLIC_URL + '/login'} component={Loginpage} />
+            <PrivateRoute path={process.env.PUBLIC_URL + '/'} component={BoxesPage} />
           </Switch>
         </div>
       </BrowserRouter>
