@@ -12,7 +12,7 @@ class LoginPage extends Component {
     super(props)
 
     if (validTokenExists()) {
-      props.history.push('/')
+      props.history.push(process.env.PUBLIC_URL + '/')
     }
     this.state = {
       showSnackbar: false,

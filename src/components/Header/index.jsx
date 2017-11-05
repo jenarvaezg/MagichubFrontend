@@ -20,7 +20,7 @@ class Header extends Component {
 
   handleLogout(){
     window.localStorage.removeItem('token')
-    window.location = '/login'
+    window.location = process.env.PUBLIC_URL + '/login'
   }
 
   render(){
