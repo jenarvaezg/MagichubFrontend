@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+//import createHistory from 'history/createHashHistory'
 
 import '../style/App.css';
 import BoxesPage from './BoxesPage';

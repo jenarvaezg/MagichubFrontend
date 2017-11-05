@@ -50,13 +50,19 @@ class LoginPage extends Component {
     this.setState({ showSnackbar: true, snackbarText: error});
   }
 
+  handleLoginSuccessful(){
+    this.props.history.push("/")
+  }
+
 
   render() {
     return(
       <div className="container-fluid login-page" style={{width: "100%", height: "100%"}}>
         <div className="row">
           <div className="col-md-4 col-md-offset-4" style={{padding: "200px", textAlign: "center"}}>
-            <LoginForm onLoginFailed={this.onLoginFailed.bind(this)}/>
+            <LoginForm
+              onLoginFailed={this.onLoginFailed.bind(this)}
+              onLoginSuccessful={this.handleLoginSuccessful.bind(this)} />
             <Button onClick={this.handleCreateAccountButtonClick.bind(this)}>Create account</Button>
           </div>
         </div>

@@ -20,7 +20,7 @@ class Header extends Component {
 
   handleLogout(){
     window.localStorage.removeItem('token')
-    window.location = '/login'
+    this.props.history.push('/login')
   }
 
   render(){

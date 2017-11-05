@@ -28,7 +28,7 @@ class BoxesPage extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header history={this.props.history}/>
         <div className="App-intro" >
           <div className="col-xs-4">
             <BoxList/>
