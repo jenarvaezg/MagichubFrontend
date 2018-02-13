@@ -2,6 +2,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to right, #a8c0ff, #4b134f);
+  height: 100%;
+  width: 100%;
 }
 
 .box-list-item {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Snackbar from 'material-ui/Snackbar';
 import Button from 'material-ui/Button';
 
+import { LoginPageContainer, LoginBox } from './styles'
 import { validTokenExists } from '../../helpers';
 import LoginForm from './LoginForm';
 import CreateAccountDialog from './CreateAccountDialog';
@@ -57,15 +58,13 @@ class LoginPage extends Component {
 
   render() {
     return(
-      <div className="container-fluid login-page" style={{width: "100%", height: "100%"}}>
-        <div className="row">
-          <div className="col-md-4 col-md-offset-4" style={{padding: "200px", textAlign: "center"}}>
-            <LoginForm
-              onLoginFailed={this.onLoginFailed.bind(this)}
-              onLoginSuccessful={this.handleLoginSuccessful.bind(this)} />
-            <Button onClick={this.handleCreateAccountButtonClick.bind(this)}>Create account</Button>
-          </div>
-        </div>
+      <LoginPageContainer>
+        <LoginBox>
+          <LoginForm
+            onLoginFailed={this.onLoginFailed.bind(this)}
+            onLoginSuccessful={this.handleLoginSuccessful.bind(this)} />
+          <Button onClick={this.handleCreateAccountButtonClick.bind(this)}>Create account</Button>
+        </LoginBox>
         <Snackbar
           anchorOrigin={{
             vertical: 'bottom',
@@ -85,7 +84,7 @@ class LoginPage extends Component {
           onCreatedAccountSuccess={this.handleCreateAccountSuccess.bind(this)}
           onCreatedAccountError={this.handleCreateAccountError.bind(this)}
         />
-      </div>
+      </LoginPageContainer>
     )
   }
 }

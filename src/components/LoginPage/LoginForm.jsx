@@ -35,6 +35,7 @@ class LoginForm extends Component {
           margin="dense"
           name="username"
           label="Username"
+          fullWidth={true}
           component={this.renderTextField}
         />
         <Field
@@ -42,9 +43,12 @@ class LoginForm extends Component {
           name="password"
           label="Password"
           type="password"
+          fullWidth={true}
           component={this.renderTextField}
         />
-        <Button type="submit" color="primary">Submit</Button>
+        <div className="row" style={{"textAlign": "center"}}>
+          <Button type="submit" color="primary">Submit</Button>
+        </div>
       </form>
     )
   }
