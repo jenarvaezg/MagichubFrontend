@@ -22,8 +22,8 @@ class LoginPage extends Component {
     }
   }
 
-  onLoginFailed() {
-    this.setState({ showSnackbar: true, snackbarText: 'Login failed, invalid credentials' });
+  onLoginFailed(message) {
+    this.setState({ showSnackbar: true, snackbarText: message });
   }
 
   handleRequestClose(event, reason) {

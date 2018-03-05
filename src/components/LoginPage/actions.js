@@ -6,7 +6,7 @@ import constants from '../../app.config'
 export const LOGIN_PERFORMED = 'LOGIN_PERFORMED';
 export const CREATED_ACCOUNT = 'CREATED_ACCOUNT';
 
-export function logIn(credentials, callback, errorCallback) {
+export function logIn(credentials, sucessCallback, errorCallback) {
   const headers = {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
@@ -15,7 +15,19 @@ export function logIn(credentials, callback, errorCallback) {
   params.append('username', credentials.username);
   params.append('password', credentials.password);
 
-  const request = axios.post(constants.loginUrl, params, {headers}).then(callback).catch(errorCallback);
+  const request = axios.post(constants.loginUrl, params, {headers}).then(sucessCallback).catch(errorCallback);
+
+  return {
+    type: LOGIN_PERFORMED,
+    payload: request
+  }
+}
+
+export function logInWithGoogle(googleResponse, sucessCallback, errorCallback) {
+  const headers = {
+    'X-Google-Login': 'yes'
+  }
+  const request = axios.post(constants.loginUrl, googleResponse, { headers }).then(sucessCallback).catch(errorCallback)
 
   return {
     type: LOGIN_PERFORMED,
