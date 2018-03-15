@@ -13,7 +13,6 @@ class LoginForm extends Component {
 
 
   handleGoogleResponseOK(response) {
-    console.log(response)
     this.props.logInWithGoogle(response, ({ data }) => {
       window.localStorage.token = data
       this.props.onLoginSuccessful()

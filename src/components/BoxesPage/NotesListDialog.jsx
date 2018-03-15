@@ -8,10 +8,24 @@ import Dialog, { DialogTitle, DialogActions } from 'material-ui/Dialog';
 import PersonIcon from 'material-ui-icons/Person';
 
 
+
+
 class NotesListDialog extends Component {
   handleRequestClose = () => {
     this.props.onRequestClose();
   };
+
+  getAvatar(user, users) {
+    if (!user || !users[user].username || ! users[user].imageUrl) {
+      return (
+        <Avatar>
+          <PersonIcon />
+        </Avatar>
+      )
+    } else {
+      return <Avatar src={users[user].imageUrl}></Avatar>
+    }
+  }
 
   render() {
     const { notes, onRequestClose, open, box, users } = this.props;
@@ -29,9 +43,7 @@ class NotesListDialog extends Component {
                   <Tooltip
                     title={!note.from ? "Anonymous":  users[note.from].username || `Unknow user, id: ${note.from}`}
                     placement="top">
-                    <Avatar>
-                      <PersonIcon />
-                    </Avatar>
+                    {this.getAvatar(note.from, users)}
                   </Tooltip>
                 </ListItemAvatar>
                 <ListItemText

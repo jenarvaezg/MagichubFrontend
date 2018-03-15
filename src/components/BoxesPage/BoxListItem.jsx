@@ -31,7 +31,8 @@ class BoxListItem extends Component {
     return (
       <li className={this.getClassName()} onClick={this.onClick} >
         <span className="box-list-item-name text-right">{this.props.box.name}</span>
-        <Ionicon style={iconStyle} icon={this.props.box.registered ? "ion-android-unlock" : "ion-android-lock"}/>
+        <Ionicon style={iconStyle} icon={this.props.box.registered ? "md-unlock" : "md-lock"}/>
+        <Ionicon style={iconStyle} icon={this.props.box.status === "open" ? "md-mail-open" : "md-mail"}/>
       </li>
     );
   }

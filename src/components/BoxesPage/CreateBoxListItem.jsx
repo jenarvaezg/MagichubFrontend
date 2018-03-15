@@ -17,7 +17,7 @@ class CreateBoxListItem extends Component {
   render(){
     return(
       <li className={this.getClassName()} onClick={() => this.props.boxSelected(null)}>
-        <Ionicon style={iconStyle} icon="ion-plus-circled" />
+        <Ionicon style={iconStyle} icon="ios-add-circle" />
         <span>Create Box</span>
       </li>
     );

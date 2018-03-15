@@ -1,0 +1,15 @@
+{
+  "short_name": "Magic Box",
+  "name": "Magic Box: Your agile time-capsule",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

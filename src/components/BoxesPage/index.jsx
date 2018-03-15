@@ -30,10 +30,10 @@ class BoxesPage extends Component {
       <div className="App">
         <Header history={this.props.history}/>
         <div className="App-intro" >
-          <div className="col-xs-4">
+          <div className="col-xs-6 col-md-4">
             <BoxList/>
           </div>
-          <div className="col-xs-8">
+          <div className="col-xs-6 col-md-8">
             <BoxDetail />
             <CreateBoxForm />
           </div>

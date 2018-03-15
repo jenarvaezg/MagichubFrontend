@@ -9,10 +9,12 @@ body {
 
 .box-list-item {
   background-color: #7986CB;
+  word-wrap: break-word;
 }
 
 .selected-box {
   background-color: #303F9F;
+  color: white;
 }
 
 .App-intro {
@@ -20,6 +22,7 @@ body {
 }
 
 .box-detail, .notes-section {
+  word-wrap: break-word;
   background-color: #7986CB;
   border-radius: 5px;
   border-width: 1px;
@@ -29,6 +32,7 @@ body {
 
 button {
   background-color:  #3F51B5;
+  color: white;
 }
 
 .icon-span {

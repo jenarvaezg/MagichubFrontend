@@ -5566,13 +5566,14 @@ react-google-login@^3.0.4:
     "@types/react" "*"
     prop-types "^15.6.0"
 
-react-ionicons@^1.5.9:
-  version "1.5.9"
-  resolved "https://registry.yarnpkg.com/react-ionicons/-/react-ionicons-1.5.9.tgz#3822f406b1cb0ea43ffd35b942d5d4bb4286cdba"
+react-ionicons@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/react-ionicons/-/react-ionicons-2.1.6.tgz#c9c472c242f41f228a6261fd6ce156d54e0e7677"
   dependencies:
     prop-types "15.5.10"
     react "15.4.2"
     react-dom "15.4.2"
+    styled-components "2.2.3"
 
 react-jss@^7.2.0:
   version "7.2.0"
@@ -6492,6 +6493,20 @@ style-loader@0.18.2:
     loader-utils "^1.0.2"
     schema-utils "^0.3.0"
 
+styled-components@2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-2.2.3.tgz#154575c269880c840f903f580287dab155cf684c"
+  dependencies:
+    buffer "^5.0.3"
+    css-to-react-native "^2.0.3"
+    fbjs "^0.8.9"
+    hoist-non-react-statics "^1.2.0"
+    is-function "^1.0.1"
+    is-plain-object "^2.0.1"
+    prop-types "^15.5.4"
+    stylis "3.x"
+    supports-color "^3.2.3"
+
 styled-components@^3.1.6:
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-3.1.6.tgz#9c443146fa82c6659a9f64dd493bf2202480342e"
@@ -6509,6 +6524,10 @@ styled-components@^3.1.6:
 stylis-rule-sheet@^0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/stylis-rule-sheet/-/stylis-rule-sheet-0.0.7.tgz#5c51dc879141a61821c2094ba91d2cbcf2469c6c"
+
+stylis@3.x:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.5.0.tgz#016fa239663d77f868fef5b67cf201c4b7c701e1"
 
 stylis@^3.4.0:
   version "3.4.8"
