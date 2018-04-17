@@ -16,7 +16,7 @@ class InsertNotesForm extends Component {
     this.state = {
       title: '',
       detail: '',
-      anonymous: true
+      anonymous: false
     }
   }
 

@@ -4,13 +4,32 @@ import List, { ListItem, ListItemText, ListItemAvatar } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import Tooltip from 'material-ui/Tooltip';
 import Button from 'material-ui/Button';
-import Dialog, { DialogTitle, DialogActions } from 'material-ui/Dialog';
+import Dialog, { DialogTitle, DialogContent, DialogActions } from 'material-ui/Dialog';
 import PersonIcon from 'material-ui-icons/Person';
+import Slide from 'material-ui/transitions/Slide';
 
-
+function Transition(props) {
+  return <Slide direction="up" {...props} />;
+}
 
 
 class NotesListDialog extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      visibleNotes: [],
+      moreNotes: true
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.notes && nextProps.notes.length > 0) {
+      this.setState({ visibleNotes: nextProps.notes.slice(0, 1) })
+    }
+  }
+
   handleRequestClose = () => {
     this.props.onRequestClose();
   };
@@ -27,17 +46,23 @@ class NotesListDialog extends Component {
     }
   }
 
+  onPopNote(notes) {
+    const visibleNotes = this.state.visibleNotes
+    const moreNotes = notes.length > visibleNotes.length + 1
+    this.setState({ moreNotes, visibleNotes: notes.slice(0, visibleNotes.length + 1) })
+  }
+
   render() {
     const { notes, onRequestClose, open, box, users } = this.props;
     if (!notes) {
       return <div></div>
     }
     return (
-      <Dialog open={open} onRequestClose={() => onRequestClose()}>
+      <Dialog transition={Transition} open={open} onRequestClose={() => onRequestClose()}>
         <DialogTitle>{`Notes inside ${box.name}`}</DialogTitle>
-        <div>
+        <DialogContent>
           <List>
-            {notes.map((note, key) => (
+            {this.state.visibleNotes.map((note, key) => (
               <ListItem key={note.title + key}>
                 <ListItemAvatar>
                   <Tooltip
@@ -53,8 +78,11 @@ class NotesListDialog extends Component {
               </ListItem>
             ))}
           </List>
-        </div>
+        </DialogContent>
         <DialogActions>
+          <Button style={{'display': this.state.moreNotes ? 'block' : 'none' }} onClick={this.onPopNote.bind(this, notes)} color="primary">
+            Get another note
+          </Button>
           <Button onClick={() => onRequestClose()} color="primary">
             Exit
           </Button>
