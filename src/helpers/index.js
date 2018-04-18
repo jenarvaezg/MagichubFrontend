@@ -5,6 +5,7 @@ export function validTokenExists() {
   if (!jwt) {
     return false
   }
+
   try {
     const decoded = jwt_decode(jwt)
     const expired = new Date() > new Date(decoded.exp*1000)
@@ -17,7 +18,6 @@ export function validTokenExists() {
     return false
   }
 }
-
 
 export function userFromToken() {
   let jwt = window.localStorage.token

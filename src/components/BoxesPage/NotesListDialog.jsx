@@ -26,7 +26,7 @@ class NotesListDialog extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.notes && nextProps.notes.length > 0) {
-      this.setState({ visibleNotes: nextProps.notes.slice(0, 1) })
+      this.setState({ moreNotes: nextProps.notes.length > 1, visibleNotes: nextProps.notes.slice(0, 1) })
     }
   }
 
