@@ -2,6 +2,15 @@ language: node_js
 node_js:
   - "stable"
 
+install: true
+
+addons:
+  apt:
+    packages:
+      - sshpass
+      - ca-certificates
+
+
 before_script:
   - MAGICHUB_FRONTEND_VERSION=$(python scripts/get_version.py)
   - echo $MAGICHUB_FRONTEND_VERSION
@@ -9,7 +18,7 @@ before_script:
 after_success:
   - echo $TRAVIS_BRANCH;
   - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
-    ./scripts/build_image.sh;
+    ./scripts/build_image.sh $MAGICHUB_FRONTEND_VERSION;
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
     docker push jenarvaezg/magichub-frontend:$MAGICHUB_FRONTEND_VERSION;
     fi
