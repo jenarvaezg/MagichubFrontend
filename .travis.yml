@@ -2,9 +2,27 @@ language: node_js
 node_js:
   - "stable"
 
+install: true
+
+addons:
+  apt:
+    packages:
+      - sshpass
+      - ca-certificates
+
+install:
+  - yarn install
+
+cache:
+  directories:
+  - node_modules
+
 before_script:
   - MAGICHUB_FRONTEND_VERSION=$(python scripts/get_version.py)
   - echo $MAGICHUB_FRONTEND_VERSION
+
+script:
+  - yarn test
 
 after_success:
   - echo $TRAVIS_BRANCH;
