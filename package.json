@@ -1,37 +1,36 @@
 {
-  "name": "magicbox-frontend",
+  "name": "magichub-frontend",
   "version": "0.1.0",
-  "homepage": "https://jenarvaezg.github.io/MagicBox",
+  "homepage": "https://magichub.io",
   "private": true,
   "dependencies": {
-    "axios": "^0.17.0",
-    "classnames": "^2.2.5",
-    "jwt-decode": "^2.2.0",
-    "material-ui": "^1.0.0-beta.19",
-    "material-ui-icons": "^1.0.0-beta.17",
-    "material-ui-pickers": "^1.0.0-alpha.12",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-google-login": "^3.0.4",
-    "react-ionicons": "^2.1.6",
-    "react-redux": "^5.0.6",
-    "react-router-dom": "^4.2.2",
+    "axios": "0.17.0",
+    "classnames": "2.2.5",
+    "jwt-decode": "2.2.0",
+    "material-ui": "1.0.0-beta.19",
+    "material-ui-icons": "1.0.0-beta.17",
+    "material-ui-pickers": "1.0.0-alpha.12",
+    "react": "16.0.0",
+    "react-dom": "16.0.0",
+    "react-google-login": "3.0.4",
+    "react-ionicons": "2.1.6",
+    "react-redux": "5.0.6",
+    "react-router-dom": "4.2.2",
     "react-scripts": "1.0.14",
-    "redux": "^3.7.2",
-    "redux-form": "^7.1.2",
-    "redux-promise": "^0.5.3",
-    "redux-router": "^2.1.2",
-    "styled-components": "^3.1.6"
+    "redux": "3.7.2",
+    "redux-form": "7.1.2",
+    "redux-promise": "0.5.3",
+    "redux-router": "2.1.2",
+    "styled-components": "3.1.6"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "npm run build"
   },
   "devDependencies": {
-    "gh-pages": "^1.0.0"
+
   }
 }
