@@ -10,10 +10,15 @@ addons:
       - sshpass
       - ca-certificates
 
+cache:
+  directories:
+  - node_modules
 
 before_script:
   - MAGICHUB_FRONTEND_VERSION=$(python scripts/get_version.py)
-  - echo $MAGICHUB_FRONTEND_VERSION
+
+script:
+  - npm test
 
 after_success:
   - echo $TRAVIS_BRANCH;
