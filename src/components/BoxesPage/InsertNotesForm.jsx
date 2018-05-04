@@ -24,7 +24,7 @@ class InsertNotesForm extends Component {
     event.preventDefault();
 
     this.props.insertNote(this.props.box, this.state, () => this.props.fetchBoxes())
-    this.setState({title: '', detail: '', anonymous: true})
+    this.setState({title: '', detail: '', anonymous: false})
   }
 
   onNoteTitleChange(event){
