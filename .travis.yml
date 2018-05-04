@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - "stable"
+
+before_script:
+  - MAGICHUB_FRONTEND_VERSION=$(python scripts/get_version.py)
+  - echo $MAGICHUB_FRONTEND_VERSION
+
+after_success:
+  - echo $TRAVIS_BRANCH;
+  - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+    ./scripts/build_image.sh;
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push jenarvaezg/magichub-frontend:$MAGICHUB_FRONTEND_VERSION;
+    fi
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    echo Deploying;
+    sshpass -p "$MAGICHUB_BACKEND_PASSWORD" ssh -o "StrictHostKeyChecking no" -y $MAGICHUB_BACKEND_USER@$MAGICHUB_BACKEND_URL "./restart_frontend.sh $MAGICHUB_FRONTEND_VERSION";
+    fi

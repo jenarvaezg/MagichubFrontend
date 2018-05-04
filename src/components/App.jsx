@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 //import createHistory from 'history/createHashHistory'
 
 import '../style/App.css';
@@ -22,14 +22,14 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 export default () => {
     return(
-      <HashRouter>
+      <BrowserRouter>
         <div>
           <Switch>
             <Route path="/login" component={Loginpage} />
             <PrivateRoute path="/" component={BoxesPage} />
           </Switch>
         </div>
-      </HashRouter>
+      </BrowserRouter>
 
     )
   }
