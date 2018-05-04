@@ -20,5 +20,5 @@ after_success:
     fi
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     echo Deploying;
-    sshpass -p "$MAGICHUB_BACKEND_PASSWORD" ssh -o "StrictHostKeyChecking no" -y $MAGICHUB_BACKEND_USER@$MAGICHUB_BACKEND_URL "./restart_frontend.sh $MAGICHUB_FRONTEND_VERSION;
+    sshpass -p "$MAGICHUB_BACKEND_PASSWORD" ssh -o "StrictHostKeyChecking no" -y $MAGICHUB_BACKEND_USER@$MAGICHUB_BACKEND_URL "./restart_frontend.sh $MAGICHUB_FRONTEND_VERSION";
     fi
