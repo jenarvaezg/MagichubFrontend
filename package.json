@@ -4,7 +4,7 @@
   "homepage": "https://magichub.io",
   "private": true,
   "dependencies": {
-    "axios": "0.17.0",
+    "axios": "1.6.0",
     "classnames": "2.2.5",
     "jwt-decode": "2.2.0",
     "material-ui": "1.0.0-beta.19",
