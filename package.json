@@ -4,7 +4,7 @@
   "homepage": "https://magichub.io",
   "private": true,
   "dependencies": {
-    "axios": "0.17.0",
+    "axios": "1.12.0",
     "classnames": "2.2.5",
     "jwt-decode": "2.2.0",
     "material-ui": "1.0.0-beta.19",
@@ -16,7 +16,7 @@
     "react-ionicons": "2.1.6",
     "react-redux": "5.0.6",
     "react-router-dom": "4.2.2",
-    "react-scripts": "1.0.14",
+    "react-scripts": "5.0.0",
     "redux": "3.7.2",
     "redux-form": "7.1.2",
     "redux-promise": "0.5.3",
